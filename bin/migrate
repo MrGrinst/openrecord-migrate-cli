@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ "$1" == "create" ]; then
+  shift 1
+  ./node_modules/migrate/bin/migrate create -t "./default-template.js" -d "yyyymmddHHMMss" "$@"
+elif [ "$1" == "up" ] || [ "$1" == "down" ] || [ "$1" == "list" ]; then
+  c=$(shift 1)
+  ./node_modules/migrate/bin/migrate $c -s "./MigrationStore.js" "$@"
+elif [ "$1" != "init" ]; then
+  ./node_modules/migrate/bin/migrate up -s "./MigrationStore.js" "$@"
+else
+  ./node_modules/migrate/bin/migrate "$@"
+fi
