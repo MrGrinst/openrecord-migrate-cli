@@ -1,0 +1,15 @@
+module.exports = function() {
+  return {
+    storePath: 'openrecord/store/postgres',
+    storeConfig: {
+      host: 'localhost',
+      user: 'username',
+      password: '',
+      database: 'database',
+      plugins: [
+        require('openrecord/lib/base/dynamic_loading')
+      ],
+      models: 'my_dir/models/*'
+    }
+  }
+}
