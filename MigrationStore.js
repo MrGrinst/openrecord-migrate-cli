@@ -37,7 +37,7 @@ module.exports = function() {
       await store.ready();
       const Migrations = store.Model('migrations');
       const inserts = set.migrations.filter(m => !!m.timestamp).map(m => ({ version: m.title }));
-      await Migrations.destroyAll();
+      await Migrations.deleteAll();
       await Promise.all(inserts.map(migration => Migrations.create(migration)));
       callback();
     }

@@ -1,11 +1,10 @@
-const openrecordConfig = require(process.cwd() + '/.migration-config.js')();
-const Store = require(openrecordConfig.storePath);
+const { getStore } = require(process.cwd() + '/.migration-config.js');
 
 module.exports = (function() {
   let instance;
 
   async function createInstance() {
-    const store = new Store(openrecordConfig.storeConfig);
+    const store = getStore();
     await store.ready();
     return store;
   }
