@@ -1,3 +1,4 @@
 module.exports = {
-  OpenrecordMigration: require('./OpenrecordMigration.js')
+  OpenrecordMigration: require('./OpenrecordMigration.js'),
+  MigrationStore: require('./MigrationStore.js')
 };

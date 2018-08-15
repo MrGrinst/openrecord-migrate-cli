@@ -1,6 +1,6 @@
 {
   "name": "openrecord-migrate-cli",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A CLI interface to create and run openrecord migrations.",
   "dependencies": {
     "glob": "^7.1.2",
