@@ -10,5 +10,5 @@ module.exports = {
       require('openrecord/lib/base/dynamic_loading')
     ],
     models: 'my_dir/models/*'
-  }
+  })
 }

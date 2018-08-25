@@ -17,7 +17,9 @@ module.exports = function() {
 
       await createMigrationsTableIfNeeded();
 
-      store.Model('migrations', () => {});
+      store.Model('migrations', function() {
+        this.attributes.version.primary = false
+      });
       await store.ready();
       const Migrations = store.Model('migrations');
       try {
@@ -38,7 +40,7 @@ module.exports = function() {
       const Migrations = store.Model('migrations');
       const inserts = set.migrations.filter(m => !!m.timestamp).map(m => ({ version: m.title }));
       await Migrations.deleteAll();
-      await Promise.all(inserts.map(migration => Migrations.create(migration)));
+      await Migrations.create(inserts);
       callback();
     }
   };

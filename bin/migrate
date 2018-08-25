@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOT_DIR="$(dirname "$0")/.."
+ROOT_DIR="./$(dirname "$0")/.."
 migrate="./node_modules/migrate/bin/migrate"
 
 if [ "$1" == "create" ]; then
