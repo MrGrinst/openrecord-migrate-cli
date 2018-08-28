@@ -3,14 +3,16 @@
 ROOT_DIR="./$(dirname "$0")/.."
 migrate="./node_modules/migrate/bin/migrate"
 
-if [ "$1" == "create" ]; then
-  shift 1
-  $migrate create -t "$ROOT_DIR/default-template.js" -d "yyyymmddHHMMss" "$@"
-elif [ "$1" == "up" ] || [ "$1" == "down" ] || [ "$1" == "list" ]; then
-  c=$(shift 1)
-  $migrate $c -s "$ROOT_DIR/MigrationStore.js" "$@"
-elif [ "$1" != "init" ]; then
-  $migrate up -s "$ROOT_DIR/MigrationStore.js" "$@"
+isCreateCommand=false
+for var in "$@"
+do
+  if [ "$var" == "create" ]; then
+    isCreateCommand=true
+  fi
+done
+
+if $isCreateCommand; then
+  $migrate -t "$ROOT_DIR/default-template.js" -d "yyyymmddHHMMss" -s "$ROOT_DIR/MigrationStore.js" "$@"
 else
-  $migrate "$@"
+  $migrate -s "$ROOT_DIR/MigrationStore.js" "$@"
 fi

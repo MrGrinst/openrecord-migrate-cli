@@ -18,7 +18,7 @@ module.exports = function() {
       await createMigrationsTableIfNeeded();
 
       store.Model('migrations', function() {
-        this.attributes.version.primary = false
+        this.attributes.version.primary = false;
       });
       await store.ready();
       const Migrations = store.Model('migrations');
